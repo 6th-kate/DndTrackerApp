@@ -5,8 +5,6 @@ const screenWidth = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
     mainContainer: {
-        //position: "absolute",
-        //bottom: 0,
         width: screenWidth,
         backgroundColor: '#151516',
         alignSelf: "center",

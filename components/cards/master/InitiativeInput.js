@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, TextInput, Dimensions, } from 'react-native';
 import React from 'react';
 import Conditions from '../common/Conditions';
 import PlayableCharacterModel from '../../../models/PlayableCharacterModel';
-// import React, { useState } from 'react';
 
 const screenWidth = Dimensions.get('window').width;
 

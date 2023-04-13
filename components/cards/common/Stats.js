@@ -1,6 +1,5 @@
-import { View, StyleSheet, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
-const screenWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
     statsLabelBig: {
         textAlign: 'center',
@@ -25,7 +24,6 @@ const styles = StyleSheet.create({
     },
 
     fieldCenterContent: {
-        //width: '48%',
         height: 'auto',
         paddingBottom: 10,
         marginBottom: 13,
@@ -47,12 +45,6 @@ function StatsLabel(props) {
       </View>
     );
   }
-  
-
-  // если вдруг решим еще добавить
-  function checkIndexIsEvenAndLast (n,count) {
-    return n % 2 == 0 && n == count;
-}
   
   function Stats({props}) {
     return (

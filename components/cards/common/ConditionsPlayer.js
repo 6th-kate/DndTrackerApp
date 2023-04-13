@@ -1,4 +1,4 @@
-import { View, StyleSheet, Button, Text, TouchableOpacity, Modal } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import React from 'react';
 
 const styles = StyleSheet.create({

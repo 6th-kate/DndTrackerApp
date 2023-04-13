@@ -12,7 +12,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
         flex: 1,
         justifyContent: 'center',
-        // paddingBottom: 20
     },
     addButton: {
         backgroundColor: '#383841',
@@ -65,8 +64,6 @@ function CharactersInputList({navigation}) {
     const [filledState, setFilledState] = React.useState([false]);
     const initialElements = [new PlayableCharacterModel("", "", 0, 0, 0, 0)];
 
-    // const navigation = useNavigation();
-
     const [dataState, setDataState] = useState(initialElements);
 
     const addElement = () => {
@@ -84,9 +81,7 @@ function CharactersInputList({navigation}) {
 
     const startGame = () => {
         if (filledState.every(element => element === true)) {
-            // socket.emit("createGame", dataState);
-            // server mock up
-            navigation.navigate("NormalGameScreen", {characters: dataState, code: "AAAA"})
+            socket.emit("createGame", dataState);
         }
         else {
             setIsModalVisible(!isModalVisible);

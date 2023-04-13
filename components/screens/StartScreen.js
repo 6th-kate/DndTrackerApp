@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
 function StartScreen() {
     const [isModalVisible, setIsModalVisible] = React.useState(false);
     const [isErrModalVisible, setIsErrModalVisible] = React.useState(false);
+    const [isExitedModalVisible, setIsExitedModalVisible] = React.useState(false);
     const navigation = useNavigation();
 
     const startGame = () => {
@@ -68,23 +69,28 @@ function StartScreen() {
         setIsErrModalVisible(!isErrModalVisible);
     }
 
+    const closeExited = () => {
+        setIsExitedModalVisible(!isExitedModalVisible);
+    }
+
+    const onClosed = () => {
+        setIsExitedModalVisible(!isExitedModalVisible);
+    }
+
     const connectGame = (codeGame) => {
         socket.emit("connectGame", codeGame);
         setIsModalVisible(!isModalVisible);
-        // get characters from server
-        //const charactersArr = [new PlayableCharacterModel("dhudshu", "hbds", 9, 0, 8, 21),new PlayableCharacterModel("dhudshu", "hbds", 9, 0, 8, 21), new NonPlayableCharacterModel("fkshrbf", 0, 34, 56)]
-        //
     }
 
     React.useEffect(() => {
         socket.on("connectedGame", (charactersArr, codeGame) => {
-            navigation.navigate("PlayerGameScreen", {characters: charactersArr, code: codeGame})
+            navigation.navigate("PlayerGameScreen", {characters: charactersArr, code: codeGame, close:onClosed})
         });
     }, [socket, navigation])
 
     React.useEffect(() => {
         socket.on("incorrectRoom", () => {
-            setIsModalVisible(!isModalVisible);
+            setIsErrModalVisible(!isErrModalVisible);
         });
     }, [socket, navigation])
 
@@ -98,6 +104,7 @@ function StartScreen() {
             </TouchableOpacity>
             {isModalVisible && <ConnectModal goBack={goBack} connectGame={connectGame} isModalVisible={isModalVisible}/>}
             {isErrModalVisible && <Alert goBack={closeAlert} message="Игра с таким кодом не найдена" isModalVisible={isErrModalVisible}/>}
+            {isExitedModalVisible && <Alert goBack={closeExited} message="Игра была завершена мастером!" isModalVisible={isExitedModalVisible}/>}
         </View>
     );
 }

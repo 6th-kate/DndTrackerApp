@@ -36,27 +36,24 @@ const styles = StyleSheet.create({
 });
 
 function PlayerGameScreen({ route, navigation }) {
-  let { characters, code } = route.params;
+  let { characters, code, close } = route.params;
 
   const [charactersState, setCharactersState] = React.useState([...characters]);
 
   React.useEffect(() => {
     socket.on("refreshedCharacters", (newCharacters) => setCharactersState(newCharacters));
-    console.log("player characters")
-    console.log(charactersState)
   }, [socket]);
 
   React.useEffect(() => {
     socket.on("gameDeleted", () => {
       navigation.goBack();
       socket.emit("leaveGame", code);
+      close();
     });
   }, [socket, code, navigation])
 
   const chComp = charactersState.map(ch => {
       if (ch.insight !== undefined) {
-        console.log(ch)
-        console.log(ch.hasCurrentTurn)
         if (ch.hasCurrentTurn) {
           return (
             <View style={styles.gameContainer}>

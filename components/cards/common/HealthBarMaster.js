@@ -95,6 +95,7 @@ function HealthInput(props) {
                        placeholder="0"
                        placeholderTextColor="#989899"
                        value={firState}
+                       maxLength={6}
                        onChangeText={val => {
                         const text = val.replace(/[^0-9]/g, '')
                         setFirState(text);
