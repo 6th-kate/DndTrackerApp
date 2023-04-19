@@ -41,7 +41,7 @@ socketIO.on('connection', (socket) => {
         }
         socket.join(roomName);
         gameRooms[roomName] = characters;
-        socket.emit("createdGame", roomName);
+        socket.emit("createdGame", roomName, characters);
     });
 
     socket.on("refreshCharacters", (characters, code) => {
