@@ -1,7 +1,7 @@
 const express = require("express");
 
 const app = express();
-const PORT = 3000;
+const PORT = 6000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -13,7 +13,7 @@ app.use(cors());
 
 const socketIO = require('socket.io') (http, {
     cors: {
-        origin: "http://localhost:19006"
+        origin: "*"
     }
 });
 
